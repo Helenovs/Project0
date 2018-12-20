@@ -1,10 +1,9 @@
 
 
 const checkWhoWins=function(arr){
-  console.log("internal arr:",arr)
-  // console.log("0,0:",arr[0][0])
+  // console.log("internal arr:",arr)
   let  res={result: false, winner: -1, type: ""};
-  console.log("globalResult:",globalResult);
+  // console.log("globalResult:",globalResult);
   if (globalResult.result) {
    player=gameFirstPlayer;
    if (globalResult.winner===1)winCntX++;
@@ -29,11 +28,7 @@ const checkWhoWins=function(arr){
    for (let j=0;j<arr[i].length;j++){
       if (j!==0)ids+=",";
       ids+=i.toString()+j.toString();
-      // console.log(`rows[${i},${j}]:`,arr[i][j]);
-      // console.log("first", first);
-      // console.log(`arr[${i}][${j}]`, arr[i][j]);
       if (first!==arr[i][j]) {
-        // console.log("not equal");
         eq=false;
       }
    }
@@ -44,9 +39,8 @@ const checkWhoWins=function(arr){
      res.ids=ids;
      // console.log(ids);
      arrBlink=res.ids.split(",");
-     console.log('arrBlink', arrBlink);
+     // console.log('arrBlink', arrBlink);
      for (let z=0;z<arrBlink.length;z++){
-       console.log("z=",z);
        $('#'+arrBlink[z]).addClass("blink");
        $('#'+arrBlink[z]).children().fadeOut(200).fadeIn(200);
      }
@@ -56,7 +50,6 @@ const checkWhoWins=function(arr){
  }
 
  //columns
- console.log(arr);
  for (let i=0;i<arr.length;i++){
    let eq=true;
    first=arr[0][i]
@@ -92,8 +85,6 @@ const checkWhoWins=function(arr){
    else first=arr[arr.length-1][0];
    for (let i=0;i<arr.length;i++){
        for (let j=0;j<arr[i].length;j++){
-
-
           let ii;
           if (z===0)ii=i
           else ii=arr.length-i-1;
@@ -103,7 +94,6 @@ const checkWhoWins=function(arr){
           }
             if (i===j && first!==arr[ii][j]){
               eq=false;
-
             }
        }
     }
@@ -112,16 +102,14 @@ const checkWhoWins=function(arr){
      res.winner=first;
      res.type="diag";
      res.ids=ids;
-     console.log(ids);
+     // console.log(ids);
      arrBlink=res.ids.split(",");
-     console.log('arrBlink', arrBlink);
+     // console.log('arrBlink', arrBlink);
        for (let z=0; z<arrBlink.length; z++){
          $('#'+arrBlink[z]).addClass("blink");
          $('#'+arrBlink[z]).children().fadeOut(200).fadeIn(200);
        }
      return res;
-
-
    }
 
  }
@@ -151,5 +139,3 @@ let arrEx=[
  ["","",""],
  ["","",""],
 ];
-// let res=checkWhoWins(arrEx);
-// writeLog2(res);
