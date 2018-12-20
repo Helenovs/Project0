@@ -4,83 +4,63 @@
 // const switchPlayer = function(player){
 //   if (player === 1) {
 //     player = 0;
-//     console.log(player);
+//     writeLog(player);
 //     // return player;
 //   } else {
 //     player = 1;
-//     console.log(player);
+//     writeLog(player);
 //   }
 //   // return player;
 // }
 let player = 1;
+let gameFirstPlayer=1;
+let globalResult={};
 $(document).ready(function () {
-
-
-
-
 
   const switchPlayer = function(player){
     if (player === 1) {
       player = 0;
-      // console.log(player);
-      // return player;
+
     } else {
       player = 1;
-      // console.log(player);
     }
     return player;
   }
-  // player= switchPlayer(player);
-console.log(player);
-// let variab = player;
+  $('.field').on('click', function(){
+      if (gameFirstPlayer===1) {
+      $('.playerX').addClass("color");
+      $('.playerO').removeClass("color");
+    } else {
+      $('.playerO').addClass("color");
+      $('.playerX').removeClass("color");
+    }
+    let id=$(this).attr("id");
+
+    if ($(this).children().hasClass('X')===false && $(this).children().hasClass('O')===false) {
+      arrEx[id[0]][id[1]]=player;
+      $(this).children().removeClass('X O');
+      if (player===1) {
+        $(this).children().addClass("X");
+      } else {
+        $(this).children().addClass("O");
+      }
 
 
- $('.field').on('click', function(){
-   console.log($(this).attr("id"));
-   console.log('initial player', player);
-   // console.log("switch", switchPlayer (player));
-   player= switchPlayer(player);
-   console.log('changed player', player);
-   let result=checkWhoWins(arrEx);
-   console.log(result);
-return player;
-  })
+      player= switchPlayer(player);
 
-  $('#topLeft').on('click', function(){
-    arrEx[0][0]=player;
-  })
+      globalResult=checkWhoWins(arrEx);
+      console.log(globalResult);
+      if (globalResult.result) {
+        gameFirstPlayer=switchPlayer(gameFirstPlayer);
+        console.log("FirstPlayer", gameFirstPlayer);
+    
+      }
+      return player;
 
-  $('#middleLeft').on('click', function(){
-    arrEx[1][0]=player;
-  })
+    }
 
-  $('#bottomLeft').on('click', function(){
-    arrEx[2][0]=player;
-  })
+   })
 
-  $('#topMiddle').on('click', function(){
-    arrEx[0][1]=player;
-  })
-
-  $('#middleMiddle').on('click', function(){
-    arrEx[1][1]=player;
-  })
-
-  $('#bottomMiddle').on('click', function(){
-    arrEx[2][1]=player;
-  })
-
-  $('#topRight').on('click', function(){
-    arrEx[0][2]=player;
-  })
-
-  $('#middleRight').on('click', function(){
-    arrEx[1][2]=player;
-  })
-
-  $('#bottomRight').on('click', function(){
-    arrEx[2][2]=player;
-  })
 
 
 })
