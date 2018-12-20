@@ -1,12 +1,15 @@
 
 
 const checkWhoWins=function(arr){
-  // console.log("internal arr:",arr)
+  console.log("internal arr:",arr)
   // console.log("0,0:",arr[0][0])
   let  res={result: false, winner: -1, type: ""};
+  console.log("globalResult:",globalResult);
   if (globalResult.result) {
-    // console.log("globalResult:",globalResult);
    player=gameFirstPlayer;
+   if (globalResult.winner===1)winCntX++;
+   if (globalResult.winner===0)winCntO++;
+   setResult();
 
    $('.field').children().removeClass('X O');
    arrEx=[
@@ -122,7 +125,23 @@ const checkWhoWins=function(arr){
    }
 
  }
-
+ eq=true;
+ first=arr[0][0]
+ for (let i=0;i<arr.length;i++){
+     for (let j=0;j<arr[i].length;j++){
+       if (arr[i][j]==="")eq=false;
+     }
+ }
+ if (eq){
+   noWinCnt++;
+   setResult();
+   $('.field').children().removeClass('X O');
+   arrEx=[
+    ["","",""],
+    ["","",""],
+    ["","",""],
+   ];
+ }
  return res;
 
 }
