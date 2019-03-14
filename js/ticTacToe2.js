@@ -1,5 +1,4 @@
 
-
 const checkWhoWins=function(arr){
   // console.log("internal arr:",arr)
   let  res={result: false, winner: -1, type: ""};
